@@ -1,5 +1,5 @@
 # Read Mach-O
-
+basically readelf (read executable and linking format files) for compilations on Mac-OS 
 
 
 ### Current Dependencies: 
