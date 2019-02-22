@@ -6,11 +6,12 @@ from hex_ascii import (
     serialize_hex_and_ascii, 
     clean_ascii,
 )
+from core_types import (
+    Header
+)
 
 SPACE = "  "
 
-
-    
 @click.group()
 @click.option('--input_file', 
               type=click.File('rb'),
@@ -23,7 +24,7 @@ SPACE = "  "
 @click.option('--debug/--no-debug', default=False)
 @click.pass_context
 def cli(ctx, input_file, output_file, debug):
-    ''' Parser for Executable and Linkable Formatted Files on Mac OS'''
+    '''Parser for Executable and Linkable Formatted Files on Mac OS'''
     # ensure that ctx.obj exists and is a dict (in case `cli()` is called
     # by means other than the `if` block below
     ctx.ensure_object(dict)
@@ -64,10 +65,9 @@ def hexdump(ctx):
 
 @cli.command()
 @click.pass_context
-def segmentize(ctx):
+def segments(ctx):
     ''' pretty print the segments of the file '''
-    pass
-
+    header = Header(ctx.obj['INPUT'])
 @cli.command()
 @click.argument('segment')
 @click.pass_context
